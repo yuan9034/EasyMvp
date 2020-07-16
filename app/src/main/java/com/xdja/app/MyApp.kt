@@ -30,5 +30,7 @@ class MyApp : BaseApplication() {
         //启动startKoin 后 可以使用
         loadKoinModules(EasyMvpModule.theLibModule)
         super.onCreate()
+
+
     }
 }
