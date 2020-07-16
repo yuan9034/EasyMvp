@@ -1,0 +1,81 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    compileOnly rootProject.ext.dependencies["kotlin-stdlib"]
+    compileOnly rootProject.ext.dependencies["core-ktx"]
+    compileOnly rootProject.ext.dependencies["core-ktx"]
+    api(rootProject.ext.dependencies["legacy-support-v4"]) {
+        exclude module: 'annotation'
+        exclude module: 'coordinatorlayout'
+    }
+    //androidx
+    api(rootProject.ext.dependencies["appcompat"]) {
+        exclude module: 'annotation'
+    }
+    compileOnly rootProject.ext.dependencies["design"]
+    api(rootProject.ext.dependencies["recyclerview"]) {
+        exclude module: 'annotation'
+    }
+    api rootProject.ext.dependencies["annotations"]
+
+    //network
+    api(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+
+    api rootProject.ext.dependencies["okhttp3"]
+    api rootProject.ext.dependencies["glide"]
+    kapt(rootProject.ext.dependencies["glide-compiler"]) {
+        exclude module: 'jsr305'
+    }
+    //tools
+    compileOnly rootProject.ext.dependencies["javax.annotation"]
+    compileOnly rootProject.ext.dependencies["androideventbus"]
+    compileOnly rootProject.ext.dependencies["eventbus"]
+    api rootProject.ext.dependencies["gson"]
+    //test
+    api rootProject.ext.dependencies["timber"]
+    api rootProject.ext.dependencies["koin-scope"]
+    api rootProject.ext.dependencies["koin-fragment"]
+    api rootProject.ext.dependencies["anko-commons"]
+    api rootProject.ext.dependencies["kotlin-coroutines"]
+    api rootProject.ext.dependencies["kotlin-coroutines-android"]
+    api rootProject.ext.dependencies["utilcode"]
+    api rootProject.ext.dependencies["bga-baseadapter"]
+    api rootProject.ext.dependencies["material-dialogs"]
+    api rootProject.ext.dependencies["xcrash"]
+}
