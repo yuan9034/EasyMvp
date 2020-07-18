@@ -3,6 +3,7 @@ package com.xdja.app.mvp.presenter
 import com.xdja.app.mvp.contract.UserContract
 import com.xdja.easymvp.mvp.BasePresenter
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 /**
@@ -15,7 +16,8 @@ class UserPresenter(model: UserContract.Model, rootView: UserContract.View) :
 
     fun getTest() {
         launch {
-            var bean = withContext(Dispatchers.IO) {
+            delay(2000)
+            val bean = withContext(Dispatchers.IO) {
                 mModel!!.getTest()
             }
             mRootView!!.showBean(bean)
