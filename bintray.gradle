@@ -1,0 +1,72 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+// 定义参数
+def gitUrl = 'https://github.com/yuan9034/EasyMvp.git'   // Git仓库的url
+def groupIdDefined = "com.yuanwanli"
+def artifactIdDefined = "easymvp"
+def versionDefined = "0.0.1"
+
+// 待发布项目的groupId和version。android-maven-gradle-plugin插件需要这么配置。
+group = "$groupIdDefined"
+version = "$versionDefined"
+
+// bintray平台信息配置
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user") // local.properties里设置
+    key = properties.getProperty("bintray.apikey") // local.properties里设置
+    configurations = ['archives']
+    publish = true
+    pkg {
+        repo = "maven"  // 必填。bintray平台仓库名，必须已经创建过。
+        name = "easymvp"  // 必填。仓库里包package的名称，没有的话会自动创建。
+        licenses = ["Apache-2.0"] // 首次创建package则必须，否则选填。
+        vcsUrl = gitUrl // 首次创建package则必须，否则选填。
+        version {
+            name = "$versionDefined"
+        }
+    }
+}
+
+// pom文件信息配置
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            groupId "$groupIdDefined"
+            artifactId "$artifactIdDefined"
+            version "$versionDefined"
+            packaging 'aar'
+
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+        }
+    }
+}
+
+// 生成sourceJar和javaDocJar
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.compile
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
