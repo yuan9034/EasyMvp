@@ -15,7 +15,7 @@ ext {
             retrofitSdkVersion      : "2.7.2",
             koin                    : "2.1.6",
             kotlinVersion           :"1.3.72",
-            kotlinCoroutines        :"1.3.4",
+            kotlinCoroutines        :"1.3.9",
             glideSdkVersion         : "4.11.0",
             espressoSdkVersion      : "3.0.1",
             canarySdkVersion        : "2.2"

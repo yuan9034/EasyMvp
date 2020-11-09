@@ -3,6 +3,7 @@ package com.xdja.app.mvp.contract
 import com.xdja.app.http.TestBean
 import com.xdja.easymvp.mvp.IModel
 import com.xdja.easymvp.mvp.IView
+import kotlinx.coroutines.flow.Flow
 
 /**
  * @author yuanwanli
@@ -15,6 +16,7 @@ interface UserContract {
     }
 
     interface Model : IModel {
+        fun getTest1(): Flow<TestBean>
         suspend fun getTest(): TestBean
     }
 }

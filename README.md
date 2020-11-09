@@ -96,19 +96,47 @@ class MyApp : BaseApplication() {
 将TestModule
 注意：由于该架构采用纯kotlin开发,而且采用了java不具备的协程功能，故该模板只能生成kotlin代码
 
-### presenter里面协程使用指南
+### model里面io操作建议以下两种方式
+```
+    #方式一 利用flow函数发射数据源 类似rxjava
+    fun getTest1(): Flow<TestBean> = flow {
+        emit(mRepositoryManager!!.obtainRetrofitService(ServerApi::class.java)
+            .getServer("https://wanandroid.com/wxarticle/chapters/json", 2))
+    }
+    #方式二 利用suspend函数里面的withContext切换线程并返回
+    suspend fun getTest(): TestBean {
+        return withContext(Dispatchers.IO){
+            mRepositoryManager!!.obtainRetrofitService(ServerApi::class.java)
+                .getServer("https://wanandroid.com/wxarticle/chapters/json", 2)
+        }
+    }
+```
+### 相对应的presenter里面协程使用方式
 示例代码如下:
 
 ```
+    # 针对model方式一的调用，类似rxjava，框架自动解绑订阅
+    fun getTest1() {
+        launch {
+            mModel!!.getTest1()
+                .flowOn(Dispatchers.IO)
+                .collect {
+                    mRootView!!.showBean(it)
+                }
+        }
+    }
+    # 针对model方式二的调用，框架自动解绑订阅
     fun getTest() {
         launch {
             delay(2000)
-            val bean = withContext(Dispatchers.IO) {
-                mModel!!.getTest()
-            }
+            val bean = mModel!!.getTest()
             mRootView!!.showBean(bean)
         }
     }
 ```
 launch函数本身运行在主线程
 basepresenter封装了mainScope，finallyBlock（协程体执行结束回调），failBlock（协程体抛出异常回调）
+### EventBus使用指南
+框架内使用EventBusManager管理EventBus,用户自己决定使用AndroidEventbus还是Eventbus,取决于用户依赖"org.simple:androideventbus:1.0.5.1"还是依赖"org.greenrobot:eventbus:3.2.0"。可同时使用。
+BaseActivity,BaseFragment里面的useEventbus默认返回true,无需再次注册
+
