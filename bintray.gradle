@@ -5,7 +5,7 @@ apply plugin: 'com.jfrog.bintray'
 def gitUrl = 'https://github.com/yuan9034/EasyMvp.git'   // Git仓库的url
 def groupIdDefined = "com.yuanwanli"
 def artifactIdDefined = "easymvp"
-def versionDefined = "0.0.2"
+def versionDefined = "0.0.3"
 
 // 待发布项目的groupId和version。android-maven-gradle-plugin插件需要这么配置。
 group = "$groupIdDefined"
