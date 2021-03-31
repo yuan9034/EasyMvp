@@ -24,7 +24,7 @@ class UserActivity : BaseActivity<UserPresenter>(), UserContract.View {
     override fun initData(savedInstanceState: Bundle?) {
         val get = get<IRepositoryManager>()
         LogUtils.e(get)
-        mPresenter?.getTest()
+        mPresenter?.getTest1()
     }
 
     override fun showBean(bean: TestBean) {

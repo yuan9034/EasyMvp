@@ -33,7 +33,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     compileOnly rootProject.ext.dependencies["kotlin-stdlib"]
     compileOnly rootProject.ext.dependencies["core-ktx"]
-    compileOnly rootProject.ext.dependencies["core-ktx"]
     api(rootProject.ext.dependencies["legacy-support-v4"]) {
         exclude module: 'annotation'
         exclude module: 'coordinatorlayout'
