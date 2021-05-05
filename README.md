@@ -8,7 +8,7 @@
 
 ### 使用步骤
 ###### 1.添加依赖,依赖方式如下:
-implementation 'com.yuanwanli:easymvp:0.0.1'
+implementation 'com.yuanwanli:easymvp:0.0.3'
 ###### 2.自定义Application继承BaseApplication
 
 ```
