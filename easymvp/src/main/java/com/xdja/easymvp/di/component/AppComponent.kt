@@ -3,6 +3,7 @@ package com.xdja.easymvp.di.component
 import com.google.gson.Gson
 import com.xdja.easymvp.di.module.GlobalConfigModule
 import com.xdja.easymvp.http.imageloader.ImageLoader
+import com.xdja.easymvp.http.imageloader.glide.ImageConfigImpl
 import com.xdja.easymvp.integration.IRepositoryManager
 import com.xdja.easymvp.integration.cache.Cache
 import com.xdja.easymvp.integration.lifecycle.ActivityLifecycle
@@ -22,7 +23,7 @@ import java.io.File
  */
 class AppComponent() : KoinComponent {
     lateinit var iRepositoryManager: IRepositoryManager
-    lateinit var imageLoader: ImageLoader<*>
+    lateinit var imageLoader: ImageLoader<ImageConfigImpl>
     lateinit var okHttpClient: OkHttpClient
     lateinit var gson: Gson
     lateinit var cacheFile: File

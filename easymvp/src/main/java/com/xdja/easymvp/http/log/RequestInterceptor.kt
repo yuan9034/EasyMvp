@@ -117,8 +117,10 @@ class RequestInterceptor(
                 )
             }
         }
-
-        return mHandler?.onHttpResultResponse(bodyString!!, chain, originalResponse)
+        if (bodyString==null){
+            bodyString=""
+        }
+        return mHandler?.onHttpResultResponse(bodyString, chain, originalResponse)
             ?: originalResponse
     }
 
