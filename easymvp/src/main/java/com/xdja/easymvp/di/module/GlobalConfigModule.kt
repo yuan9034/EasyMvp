@@ -115,7 +115,7 @@ class GlobalConfigModule(builder: Builder) {
     fun provideCacheFactory(application: Application): Cache.Factory {
         return if (mCacheFactory == null) {
             object : Cache.Factory {
-                override fun build(type: CacheType): Cache<*, *> = when (type.getCacheTypeId()) {
+                override fun build(type: CacheType): Cache<String, Any> = when (type.getCacheTypeId()) {
                     CacheType.EXTRAS_TYPE_ID,
                     CacheType.ACTIVITY_CACHE_TYPE_ID,
                     CacheType.FRAGMENT_CACHE_TYPE_ID -> IntelligentCache<Any>(
@@ -123,7 +123,7 @@ class GlobalConfigModule(builder: Builder) {
                             application
                         )
                     )
-                    else -> LruCache<Any, Any>(type.calculateCacheSize(application))
+                    else -> LruCache<String, Any>(type.calculateCacheSize(application))
                 }
             }
         } else {
