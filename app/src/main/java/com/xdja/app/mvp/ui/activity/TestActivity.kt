@@ -23,11 +23,11 @@ class TestActivity : BaseActivity<TestPresenter>(), TestContract.View {
 
 
     override fun initData(savedInstanceState: Bundle?) {
+        imageLoader= (application as BaseApplication).getAppComponent().imageLoader
         val builder = ImageConfigImpl.Builder()
         builder.url="http://pic1.win4000.com/pic/c/cf/cdc983699c.jpg"
         builder.placeholder=R.mipmap.ic_launcher
         builder.imageView=ivTest
-        imageLoader= (application as BaseApplication).getAppComponent().imageLoader
         imageLoader.loadImage(this,builder.build())
     }
 }
