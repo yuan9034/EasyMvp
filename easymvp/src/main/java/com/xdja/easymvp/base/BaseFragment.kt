@@ -20,7 +20,7 @@ import com.xdja.easymvp.utils.AppComponentUtils
  * @date 2020/6/28
  */
 abstract class BaseFragment<P : IPresenter> : Fragment(), IFragment {
-    protected var mPresenter: P? = null
+    protected open var mPresenter: P? = null
     protected var mCache: Cache<*, *>? = null
     protected var mContext: Context? = null
     override fun provideCache(): Cache<*, *>? {
