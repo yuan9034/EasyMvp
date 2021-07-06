@@ -1,0 +1,22 @@
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'https://packages.aliyun.com/maven/repository/2105316-release-ec0Lc5/') {
+                authentication(
+                        userName: '60643e42cff82acca74af360',
+                        password: 'NQvXGx9p6VDn'
+                )
+            }
+            snapshotRepository(url: 'https://packages.aliyun.com/maven/repository/2105316-snapshot-dX2jtq/') {
+                authentication(
+                        userName: '60643e42cff82acca74af360',
+                        password: 'NQvXGx9p6VDn'
+                )
+            }
+            pom.version = '0.0.7'
+            pom.artifactId = 'easymvp'
+            pom.groupId = 'com.yuanwanli'
+        }
+    }
+}

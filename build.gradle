@@ -21,9 +21,25 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url "https://jitpack.io" }
+        maven {
+            url 'https://maven.aliyun.com/repository/public'
+        }
+        maven {
+            credentials {
+                username '60643e42cff82acca74af360'
+                password 'NQvXGx9p6VDn'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2105316-release-ec0Lc5/'
+        }
+        maven {
+            credentials {
+                username '60643e42cff82acca74af360'
+                password 'NQvXGx9p6VDn'
+            }
+            url 'https://packages.aliyun.com/maven/repository/2105316-snapshot-dX2jtq/'
+        }
     }
 }
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

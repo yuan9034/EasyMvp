@@ -11,6 +11,9 @@ import com.xdja.easymvp.http.imageloader.ImageLoader
 import com.xdja.easymvp.http.imageloader.glide.ImageConfigImpl
 import com.xdja.easymvp.integration.cache.CacheType
 import kotlinx.android.synthetic.main.activity_test.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.koin.androidx.scope.lifecycleScope
 
 /**
@@ -38,5 +41,11 @@ class TestActivity : BaseActivity<TestPresenter>(), TestContract.View {
         build.put("a",11111)
         val get = build.get("a")
         LogUtils.e(get)
+        EventBus.getDefault().post("aaaa")
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public fun test(messageEvent :String ) {
+        LogUtils.e(messageEvent)
     }
 }

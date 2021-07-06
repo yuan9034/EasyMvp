@@ -14,13 +14,13 @@ object EventBusManager {
     /**
      * 注册订阅者, 允许在项目中同时依赖两个 EventBus, 只要您喜欢
      */
-    fun register(any: Any) {
+    public fun register(any: Any) {
         if (Platform.DEPENDENCY_ANDROID_EVENTBUS) {
-            EventBus.getDefault().register(this)
+            EventBus.getDefault().register(any)
         }
         if (Platform.DEPENDENCY_EVENTBUS) {
             if (haveAnnotation(any)) {
-                org.greenrobot.eventbus.EventBus.getDefault().register(this)
+                org.greenrobot.eventbus.EventBus.getDefault().register(any)
             }
         }
     }
@@ -30,11 +30,11 @@ object EventBusManager {
      */
     fun unregister(any: Any) {
         if (Platform.DEPENDENCY_ANDROID_EVENTBUS) {
-            EventBus.getDefault().unregister(this)
+            EventBus.getDefault().unregister(any)
         }
         if (Platform.DEPENDENCY_EVENTBUS) {
             if (haveAnnotation(any)) {
-                org.greenrobot.eventbus.EventBus.getDefault().unregister(this)
+                org.greenrobot.eventbus.EventBus.getDefault().unregister(any)
             }
         }
     }
