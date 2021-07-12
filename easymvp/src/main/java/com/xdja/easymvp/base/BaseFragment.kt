@@ -51,7 +51,6 @@ abstract class BaseFragment<P : IPresenter> : Fragment(), IFragment {
         if (mPresenter != null) {
             lifecycle.addObserver(mPresenter!!)
         }
-        initData(savedInstanceState)
     }
 
     override fun onDestroy() {

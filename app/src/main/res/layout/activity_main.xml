@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <Button
@@ -10,5 +11,8 @@
         android:text="跳转"
         android:id="@+id/btnClick"
         android:layout_height="wrap_content" />
-
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
