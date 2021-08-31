@@ -90,13 +90,13 @@ class ActivityLifecycle(
                 }
             }
             mExtras.remove(IntelligentCache.getKeyOfKeep(ConfigModule::class.java.name))
-        }
-        //注册框架外部,开发者扩展的Fragment生命周期逻辑
-        mFragmentLifecycles.forEach {
-            (activity as FragmentActivity).supportFragmentManager.registerFragmentLifecycleCallbacks(
-                it,
-                true
-            )
+            //注册框架外部,开发者扩展的Fragment生命周期逻辑
+            mFragmentLifecycles.forEach {
+                (activity as FragmentActivity).supportFragmentManager.registerFragmentLifecycleCallbacks(
+                    it,
+                    true
+                )
+            }
         }
     }
 
