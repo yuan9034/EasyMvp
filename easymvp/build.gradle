@@ -78,7 +78,7 @@ dependencies {
     api rootProject.ext.dependencies["kotlin-coroutines-android"]
     api rootProject.ext.dependencies["utilcode"]
     api rootProject.ext.dependencies["bga-baseadapter"]
-    api rootProject.ext.dependencies["material-dialogs"]
+//    api rootProject.ext.dependencies["material-dialogs"]
     api rootProject.ext.dependencies["xcrash"]
     api rootProject.ext.dependencies["XPopup"]
 }

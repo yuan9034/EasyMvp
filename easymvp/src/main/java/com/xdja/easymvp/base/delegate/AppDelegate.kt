@@ -145,7 +145,7 @@ class AppDelegate(context: Context) : App, AppLifeCycles {
     private fun initCrash(application: Application) {
         val crashCallBack = ICrashCallback { logPath, emergency ->
             val crashFile =
-                Environment.getExternalStorageDirectory().absolutePath + "/xdja/imagecollect/crash.txt"
+                Environment.getExternalStorageDirectory().absolutePath + "/banglaile/app/crash.txt"
             val errorFile = File(crashFile)
             val success = FileUtils.createOrExistsFile(errorFile)
             if (success) {

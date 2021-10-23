@@ -84,7 +84,7 @@ ext {
             "progressmanager"          : "me.jessyan:progressmanager:1.5.0",
             "retrofit-url-manager"     : "me.jessyan:retrofit-url-manager:1.4.0",
             "lifecyclemodel"           : "me.jessyan:lifecyclemodel:1.0.1",
-            "utilcode"                 : "com.blankj:utilcode:1.28.3",
+            "utilcode"                 : "com.blankj:utilcode:1.30.6",
             "bga-baseadapter"          : "cn.bingoogolapple:bga-baseadapter:1.2.9@aar",
             "xcrash"                   : "com.iqiyi.xcrash:xcrash-android-lib:2.4.6",
             //test

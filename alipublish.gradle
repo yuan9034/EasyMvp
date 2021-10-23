@@ -14,7 +14,7 @@ uploadArchives {
                         password: 'NQvXGx9p6VDn'
                 )
             }
-            pom.version = '0.0.10'
+            pom.version = '1.0.0'
             pom.artifactId = 'easymvp'
             pom.groupId = 'com.yuanwanli'
         }
