@@ -11,7 +11,7 @@ interface IView {
     /**
      * 显示加载
      */
-    fun showLoading() {
+    fun showLoading(message:String="") {
 
     }
 

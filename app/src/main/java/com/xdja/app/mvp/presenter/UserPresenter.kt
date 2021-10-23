@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.flowOn
 class UserPresenter(model: UserContract.Model, rootView: UserContract.View) :
     BasePresenter<UserContract.Model, UserContract.View>(model, rootView) {
     fun getTest1() {
+        mRootView?.showLoading()
         launch {
             mModel!!.getTest1()
                 .flowOn(Dispatchers.IO)

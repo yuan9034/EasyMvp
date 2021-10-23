@@ -63,6 +63,7 @@ ext {
             "smartrefresh"             : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0",
             "material-dialogs"         : "com.afollestad.material-dialogs:core:3.3.0",
             "wheelview"                : "com.contrarywind:wheelview:4.0.9",
+            "XPopup"                   : "com.github.li-xiaojun:XPopup:2.2.25",
             //kotlin
             "kotlin-stdlib"            : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
             "core-ktx"                 : "androidx.core:core-ktx:1.3.0",

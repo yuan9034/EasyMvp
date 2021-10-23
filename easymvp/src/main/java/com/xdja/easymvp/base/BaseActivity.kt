@@ -2,10 +2,14 @@ package com.xdja.easymvp.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.impl.LoadingPopupView
 import com.xdja.easymvp.base.delegate.IActivity
 import com.xdja.easymvp.integration.cache.Cache
 import com.xdja.easymvp.integration.cache.CacheType
 import com.xdja.easymvp.mvp.IPresenter
+import com.xdja.easymvp.mvp.IView
 import com.xdja.easymvp.utils.AppComponentUtils
 
 /**
@@ -14,9 +18,9 @@ import com.xdja.easymvp.utils.AppComponentUtils
  * 继承于这个特定的[AppCompatActivity],然后再按照[BaseActivity]的格式,将代码复制过去,记住一定要实现[IActivity]
  * @date 2020/6/24
  */
-abstract class BaseActivity<P : IPresenter> : AppCompatActivity(), IActivity {
+abstract class BaseActivity<P : IPresenter> : AppCompatActivity(), IActivity ,IView{
     protected val TAG = this.javaClass.simpleName
-
+    private var loadingPopup: BasePopupView? = null
     //如果当前界面逻辑简单,Presenter可以为空
     protected open var mPresenter: P? = null
     private var mCache: Cache<String, Any>? = null
@@ -41,5 +45,23 @@ abstract class BaseActivity<P : IPresenter> : AppCompatActivity(), IActivity {
     override fun onDestroy() {
         super.onDestroy()
         this.mPresenter = null
+    }
+
+    override fun showLoading(message: String) {
+        super.showLoading(message)
+        if (loadingPopup == null) {
+            loadingPopup = XPopup.Builder(this)
+                .hasShadowBg(true)
+                .dismissOnBackPressed(false)
+                .asLoading(message)
+                .show() as LoadingPopupView
+        } else {
+            loadingPopup?.toggle()
+        }
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+        loadingPopup?.dismiss()
     }
 }

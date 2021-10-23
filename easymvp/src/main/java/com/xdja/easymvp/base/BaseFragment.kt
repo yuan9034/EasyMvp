@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
+import com.lxj.xpopup.impl.LoadingPopupView
 import com.xdja.easymvp.base.delegate.IFragment
 import com.xdja.easymvp.integration.cache.Cache
 import com.xdja.easymvp.integration.cache.CacheType
 import com.xdja.easymvp.mvp.IPresenter
+import com.xdja.easymvp.mvp.IView
 import com.xdja.easymvp.utils.AppComponentUtils
 
 /**
@@ -19,10 +23,11 @@ import com.xdja.easymvp.utils.AppComponentUtils
  * 记住一定要实现[IFragment]
  * @date 2020/6/28
  */
-abstract class BaseFragment<P : IPresenter> : Fragment(), IFragment {
+abstract class BaseFragment<P : IPresenter> : Fragment(), IFragment,IView {
     protected open var mPresenter: P? = null
     protected var mCache: Cache<*, *>? = null
     protected var mContext: Context? = null
+    private var loadingPopup: BasePopupView? = null
     override fun provideCache(): Cache<*, *>? {
         if (mCache == null) {
             mCache =
@@ -61,5 +66,22 @@ abstract class BaseFragment<P : IPresenter> : Fragment(), IFragment {
     override fun onDetach() {
         super.onDetach()
         mContext = null
+    }
+    override fun showLoading(message: String) {
+        super.showLoading(message)
+        if (loadingPopup == null) {
+            loadingPopup = XPopup.Builder(requireContext())
+                .hasShadowBg(true)
+                .dismissOnBackPressed(false)
+                .asLoading(message)
+                .show() as LoadingPopupView
+        } else {
+            loadingPopup?.toggle()
+        }
+    }
+
+    override fun hideLoading() {
+        super.hideLoading()
+        loadingPopup?.dismiss()
     }
 }

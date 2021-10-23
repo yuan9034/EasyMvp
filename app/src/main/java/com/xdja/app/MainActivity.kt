@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.LogUtils
 import com.xdja.app.adapter.ViewPagerAdapter
 import com.xdja.app.mvp.ui.activity.TestActivity
+import com.xdja.app.mvp.ui.activity.UserActivity
 import com.xdja.app.mvp.ui.fragment.Test1Fragment
 import com.xdja.app.mvp.ui.fragment.Test2Fragment
 import com.xdja.easymvp.utils.onClick
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         LogUtils.e("onCreate")
         setContentView(R.layout.activity_main)
         btnClick.onClick {
-            startActivity<TestActivity>()
+            startActivity<UserActivity>()
         }
         var fragments= mutableListOf<Fragment>()
         fragments.add(Test1Fragment.newInstance())
