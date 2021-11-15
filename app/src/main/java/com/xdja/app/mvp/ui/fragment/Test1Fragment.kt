@@ -27,7 +27,7 @@ class Test1Fragment:BaseFragment<TestPresenter>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        LogUtils.e("TestFragment")
+        LogUtils.e("Test1Fragment")
     }
 
     override fun setData(data: Any?) {

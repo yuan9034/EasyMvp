@@ -1,14 +1,18 @@
 package com.xdja.app.adapter
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+class ViewPagerAdapter(var fragments: MutableList<Fragment>,activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
-class ViewPagerAdapter(var fragments: List<Fragment>,fm:FragmentManager):FragmentPagerAdapter(fm,
-    BEHAVIOR_SET_USER_VISIBLE_HINT
-) {
 
-    override fun getCount(): Int =2
+    override fun getItemCount(): Int {
+        return  fragments.size
+    }
 
-    override fun getItem(position: Int): Fragment= fragments[position]
+    override fun createFragment(position: Int): Fragment {
+        return fragments[position]
+    }
 }

@@ -9,13 +9,12 @@ import com.xdja.app.R
 import com.xdja.app.mvp.presenter.TestPresenter
 import com.xdja.easymvp.base.BaseFragment
 
-class Test2Fragment: BaseFragment<TestPresenter>() {
+class Test3Fragment: BaseFragment<TestPresenter>() {
 
     companion object{
-        fun newInstance():Test2Fragment {
+        fun newInstance():Test3Fragment {
             val args = Bundle()
-
-            val fragment = Test2Fragment()
+            val fragment = Test3Fragment()
             fragment.arguments = args
             return fragment
         }
@@ -31,7 +30,7 @@ class Test2Fragment: BaseFragment<TestPresenter>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        LogUtils.e("Test2Fragment")
+        LogUtils.e("Test3Fragment")
     }
 
     override fun setData(data: Any?) {
